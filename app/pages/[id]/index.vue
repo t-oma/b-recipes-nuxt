@@ -1,21 +1,12 @@
 <script setup lang="ts">
 const route = useRoute();
-const id = computed(() => {
-  const link = route.params.id;
-  if (!link) return undefined;
-
-  if (Array.isArray(link)) return undefined;
-
-  const linkParts = link.split("-");
-  const idFromlink = linkParts[linkParts.length - 1]!;
-  return idFromlink;
-});
+const id = useRouteDishID(route.params.id);
 
 const {
   data: dish,
   status,
   error,
-} = await useFetch<AppDish>(() => `/api/dishes/${id.value}`);
+} = await useFetch<AppDish>(() => `/api/dishes/${id}`);
 
 const steps = ref<DishStepWithCompleted[]>(
   dish.value!.steps.map((step, index) => ({
