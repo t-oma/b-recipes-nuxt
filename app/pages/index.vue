@@ -40,7 +40,26 @@ const dishes = computed(() => {
           v-for="dish in dishes"
           :key="dish.id"
           :dish
-        />
+        >
+          <template #header>
+            <div class="flex items-center justify-center p-3">
+              <h2 class="font-caveat text-4xl">
+                {{ dish.dislayName }}
+              </h2>
+            </div>
+          </template>
+
+          <template #default>
+            <div class="flex items-center justify-center p-4">
+              <NuxtLink
+                :to="createLink(dish)"
+                class="border-border rounded-lg border p-2"
+              >
+                Перейти до приготування
+              </NuxtLink>
+            </div>
+          </template>
+        </DishCard>
       </div>
     </template>
 

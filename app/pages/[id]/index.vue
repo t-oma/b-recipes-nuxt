@@ -48,21 +48,8 @@ const steps = ref<DishStepWithCompleted[]>(
       >
         <h1 class="font-caveat text-4xl">{{ dish.dislayName }}</h1>
       </div>
-      <div class="bg-card mx-4 rounded-lg p-4 shadow-xs">
-        <DishImgFigure :dish />
 
-        <div class="flex py-2">
-          <p>{{ dish.description }}</p>
-        </div>
-
-        <div class="flex gap-1">
-          <DishMacros
-            :dish-title="dish.dislayName"
-            :macronutrients="dish.macronutrients"
-          />
-        </div>
-
-        <DishIngridients :ingridients="dish.ingridients" />
+      <DishCard :dish>
         <hr class="border-border" />
 
         <div class="flex flex-col py-2">
@@ -71,32 +58,7 @@ const steps = ref<DishStepWithCompleted[]>(
 
           <DishSteps :steps />
         </div>
-
-        <div class="flex gap-2 py-4">
-          <button
-            type="button"
-            class="border-border inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2"
-          >
-            <Icon
-              name="lucide:printer"
-              class=""
-              size="16"
-            />
-            <span>PDF</span>
-          </button>
-          <button
-            type="button"
-            class="border-border inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2"
-          >
-            <Icon
-              name="lucide:clipboard-list"
-              class=""
-              size="16"
-            />
-            <span>Інструкція</span>
-          </button>
-        </div>
-      </div>
+      </DishCard>
     </template>
 
     <div
