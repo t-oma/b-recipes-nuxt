@@ -27,6 +27,6 @@ const id = computed(() => providedId || generatedId); // ✅ всегда буд
     :id
     v-bind="props"
     v-model="model"
-    class="bg-accent-background rounded-lg p-1 px-2"
+    class="bg-accent-background w-full rounded-lg p-1 px-2"
   />
 </template>
