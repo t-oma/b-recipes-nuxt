@@ -17,6 +17,12 @@ const addIngredient = () => {
     units: "g",
   });
 };
+
+const deleteIngredient = (index: number) => {
+  if (ingridients.value.length > 1) {
+    ingridients.value.splice(index, 1);
+  }
+};
 </script>
 
 <template>
@@ -42,11 +48,14 @@ const addIngredient = () => {
           />
         </FormField>
         <div class="flex flex-col gap-2">
-          <IngridientRow
-            v-for="(ingridient, idx) in ingridients"
-            :key="ingridient.id"
-            v-model="ingridients[idx]!"
-          />
+          <ul class="space-y-2">
+            <IngridientRow
+              v-for="(ingridient, idx) in ingridients"
+              :key="ingridient.id"
+              v-model="ingridients[idx]!"
+              @delete="deleteIngredient(idx)"
+            />
+          </ul>
 
           <button
             type="button"
