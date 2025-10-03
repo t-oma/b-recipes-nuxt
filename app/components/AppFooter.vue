@@ -1,5 +1,5 @@
 <template>
-    <footer class="p-4 flex items-center border-t border-border justify-center">
-        <p class="text-lg font-medium font-amita">Made by Lions team</p>
-    </footer>
+  <footer class="border-border flex items-center justify-center border-t p-4">
+    <p class="font-amita text-lg font-medium">Made by Lions team</p>
+  </footer>
 </template>

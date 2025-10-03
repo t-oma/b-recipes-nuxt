@@ -1,38 +1,40 @@
 <script lang="ts" setup>
-import { InstagramIcon, YouTubeIcon } from 'vue3-simple-icons'
-import { computed } from 'vue'
+import { InstagramIcon, YouTubeIcon } from "vue3-simple-icons";
+import { computed } from "vue";
 
-export type BadgeSources = 'youtube' | 'instagram'
+export type BadgeSources = "youtube" | "instagram";
 
 // Деструктурируем props, можно задать дефолты прямо здесь (Vue 3.3+)
-const { sourceName, link, newTab = true } = defineProps<{
-  sourceName: BadgeSources
-  link: string
+const {
+  sourceName,
+  link,
+  newTab = true,
+} = defineProps<{
+  sourceName: BadgeSources;
+  link: string;
   /** Открывать в новой вкладке (по умолчанию — да) */
-  newTab?: boolean
-}>()
+  newTab?: boolean;
+}>();
 
 // Мапы меток и компонентов-иконок
 const LABEL: Record<BadgeSources, string> = {
-  youtube: 'YouTube',
-  instagram: 'Instagram',
-}
+  youtube: "YouTube",
+  instagram: "Instagram",
+};
 const ICON = {
   youtube: YouTubeIcon,
   instagram: InstagramIcon,
-} as const
+} as const;
 
-const IconComponent = computed(() => ICON[sourceName])
+const IconComponent = computed(() => ICON[sourceName]);
 
 // Простейшая «санитизация» href: разрешим только http/https
-const sanitizedHref = computed(() =>
-  /^https?:\/\//i.test(link) ? link : '#'
-)
+const sanitizedHref = computed(() => (/^https?:\/\//i.test(link) ? link : "#"));
 
 // Для target=_blank добавляем rel=noopener noreferrer (безопасность)
 const relValue = computed(() =>
-  newTab ? 'noopener noreferrer external' : 'external'
-)
+  newTab ? "noopener noreferrer external" : "external",
+);
 </script>
 
 <template>

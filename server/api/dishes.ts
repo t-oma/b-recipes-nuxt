@@ -1,5 +1,5 @@
 import { dishes } from "../data";
 
-export default defineEventHandler((event) => {
-    return dishes;
+export default defineEventHandler((_event) => {
+  return dishes;
 });

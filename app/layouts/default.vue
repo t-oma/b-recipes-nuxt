@@ -1,9 +1,9 @@
 <template>
-    <div class="min-h-screen flex antialiased flex-col">
-        <AppHeader />
+  <div class="flex min-h-screen flex-col antialiased">
+    <AppHeader />
 
-        <slot />
+    <slot />
 
-        <AppFooter />
-    </div>
+    <AppFooter />
+  </div>
 </template>

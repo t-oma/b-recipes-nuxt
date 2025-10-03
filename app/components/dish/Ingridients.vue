@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import gsap from "gsap";
-
-const props = defineProps<{
-    ingridients: DishIngridient[];
+defineProps<{
+  ingridients: DishIngridient[];
 }>();
 
 const formatIngridient = (ingr: DishIngridient) => {
-    if (hasUnits(ingr)) {
-        return `${ingr.title} - ${ingr.amount} ${ingr.units}`;
-    } else {
-        return `${ingr.title} - ${ingr.amount}`;
-    }
+  if (hasUnits(ingr)) {
+    return `${ingr.title} - ${ingr.amount} ${ingr.units}`;
+  } else {
+    return `${ingr.title} - ${ingr.amount}`;
+  }
 };
 
 const isOpen = ref(false);
@@ -30,71 +29,74 @@ const panel = ref<HTMLDivElement | null>(null);
 // });
 
 async function openPanel() {
-    isOpen.value = true;
-    await nextTick();
-    const el = panel.value!;
+  isOpen.value = true;
+  await nextTick();
+  const el = panel.value!;
 
-    gsap.fromTo(
-        el,
-        { height: 0, opacity: 0 },
-        {
-            height: el.scrollHeight,
-            opacity: 1,
-            ease: "power2.out",
-            duration: 0.28,
-            onComplete: () => {
-                gsap.set(el, { height: "auto" });
-            },
-        },
-    );
+  gsap.fromTo(
+    el,
+    { height: 0, opacity: 0 },
+    {
+      height: el.scrollHeight,
+      opacity: 1,
+      ease: "power2.out",
+      duration: 0.28,
+      onComplete: () => {
+        gsap.set(el, { height: "auto" });
+      },
+    },
+  );
 }
 
 function closePanel() {
-    const el = panel.value!;
-    gsap.to(el, {
-        height: 0,
-        opacity: 0,
-        ease: "power2.in",
-        duration: 0.24,
-        onComplete: () => {
-            isOpen.value = false;
-        },
-    });
+  const el = panel.value!;
+  gsap.to(el, {
+    height: 0,
+    opacity: 0,
+    ease: "power2.in",
+    duration: 0.24,
+    onComplete: () => {
+      isOpen.value = false;
+    },
+  });
 }
 
 function toggle() {
-    if (isOpen.value) closePanel();
-    else openPanel();
+  if (isOpen.value) closePanel();
+  else openPanel();
 }
 </script>
 
 <template>
-    <details
-        ref="detailsEl"
-        :open="isOpen"
+  <details
+    ref="detailsEl"
+    :open="isOpen"
+  >
+    <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
+    <summary
+      class="flex cursor-pointer items-center gap-2 py-4 font-medium"
+      @click.prevent="toggle"
+      @keydown.enter.prevent="toggle"
+      @keydown.space.prevent="toggle"
     >
-        <summary
-            class="flex cursor-pointer items-center gap-2 py-4 font-medium"
-            @click.prevent="toggle"
-        >
-            <Icon
-                name="lucide:arrow-right"
-                class="transition-transform duration-[250ms]"
-                :class="{ 'rotate-90': isOpen }"
-            />
-            <span> Інгрідієнти </span>
-        </summary>
+      <Icon
+        name="lucide:arrow-right"
+        class="transition-transform duration-[250ms]"
+        :class="{ 'rotate-90': isOpen }"
+      />
+      <span> Інгрідієнти </span>
+    </summary>
 
-        <ul
-            ref="panel"
-            class="list-disc overflow-hidden pb-4 pl-10 will-change-[height,opacity]"
-        >
-            <li
-                v-for="ingridient in ingridients"
-                :key="ingridient.title"
-            >
-                <p>{{ formatIngridient(ingridient) }}</p>
-            </li>
-        </ul>
-    </details>
+    <ul
+      ref="panel"
+      class="list-disc overflow-hidden pb-4 pl-10 will-change-[height,opacity]"
+    >
+      <li
+        v-for="ingridient in ingridients"
+        :key="ingridient.title"
+      >
+        <p>{{ formatIngridient(ingridient) }}</p>
+      </li>
+    </ul>
+  </details>
 </template>
