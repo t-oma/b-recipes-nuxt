@@ -42,7 +42,11 @@ const addIngredient = () => {
           />
         </FormField>
         <div class="flex flex-col gap-2">
-          <IngridientRow v-model="ingridients[0]!" />
+          <IngridientRow
+            v-for="(ingridient, idx) in ingridients"
+            :key="ingridient.id"
+            v-model="ingridients[idx]!"
+          />
 
           <button
             type="button"
