@@ -3,7 +3,6 @@ import tailwindcss from "@tailwindcss/vite";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
-  modules: ["nuxt-typed-router"],
   devtools: { enabled: true },
 
   css: ["~/assets/css/main.css"],
@@ -12,6 +11,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "nuxt-typed-router",
     "@nuxt/eslint",
     "@nuxt/fonts",
     "@nuxt/icon",
