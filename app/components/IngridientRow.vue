@@ -23,34 +23,34 @@ watch(rule, (newRule) => {
 </script>
 
 <template>
-  <div class="flex items-center gap-2">
+  <div class="grid grid-cols-6 items-center gap-2">
     <FormInput
       v-model="model.title"
       placeholder="Назва інгредієнта"
       name="title"
+      class="col-span-4"
     />
-    <template v-if="">
-      <FormInput
-        v-model="model.amount"
-        type="number"
-        min="0"
-        placeholder="0"
-        name="amount"
-      />
-      <!--  eslint-disable-next-line -->
-      <select
-        v-if="hasUnits(model)"
-        v-model="model.units"
-        :disabled="!!rule?.lock"
+    <FormInput
+      v-model="model.amount"
+      :type="hasUnits(model) ? 'number' : 'text'"
+      :min="hasUnits(model) ? '0' : undefined"
+      :placeholder="hasUnits(model) ? '0' : 'за смаком'"
+      name="amount"
+      :class="hasUnits(model) ? 'col-span-1' : 'col-span-2'"
+    />
+    <!--  eslint-disable-next-line -->
+    <select
+      v-if="hasUnits(model)"
+      v-model="model.units"
+      :disabled="!!rule?.lock"
+    >
+      <option
+        v-for="unit in ALL_UNITS"
+        :key="unit"
+        :value="unit"
       >
-        <option
-          v-for="unit in ALL_UNITS"
-          :key="unit"
-          :value="unit"
-        >
-          {{ unit }}
-        </option>
-      </select>
-    </template>
+        {{ unit }}
+      </option>
+    </select>
   </div>
 </template>
