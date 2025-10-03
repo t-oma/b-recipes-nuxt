@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-type Ingridient = DishIngridient & { id: string };
-
-const model = defineModel<Ingridient>({ required: true });
+const model = defineModel<DishIngridient>({ required: true });
 
 type UnitRule = { units: IngridientUnits; lock: boolean };
 
@@ -11,6 +9,8 @@ const UNIT_RULES: Readonly<Record<string, UnitRule>> = {
 
   мясо: { units: "kg", lock: true },
 } as const;
+
+const ALL_UNITS = ["g", "kg", "ml", "l", "pcs"] as const;
 
 const rule = computed(() => UNIT_RULES[norm(model.value?.title || "")] || null);
 
@@ -23,31 +23,34 @@ watch(rule, (newRule) => {
 </script>
 
 <template>
-  <div class="grid grid-cols-[1fr_auto_auto] items-center gap-2">
+  <div class="flex items-center gap-2">
     <FormInput
       v-model="model.title"
       placeholder="Назва інгредієнта"
       name="title"
     />
-    <FormInput
-      v-model="model.amount"
-      type="number"
-      min="0"
-      placeholder="0"
-      name="amount"
-    />
-    <select
-      v-if="hasUnits(model)"
-      v-model="model.units"
-      :disabled="!!rule?.lock"
-    >
-      <option
-        v-for="unit in ALL_UNITS"
-        :key="unit"
-        :value="unit"
+    <template v-if="">
+      <FormInput
+        v-model="model.amount"
+        type="number"
+        min="0"
+        placeholder="0"
+        name="amount"
+      />
+      <!--  eslint-disable-next-line -->
+      <select
+        v-if="hasUnits(model)"
+        v-model="model.units"
+        :disabled="!!rule?.lock"
       >
-        {{ unit }}
-      </option>
-    </select>
+        <option
+          v-for="unit in ALL_UNITS"
+          :key="unit"
+          :value="unit"
+        >
+          {{ unit }}
+        </option>
+      </select>
+    </template>
   </div>
 </template>

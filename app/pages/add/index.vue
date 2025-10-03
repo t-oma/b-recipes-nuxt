@@ -1,9 +1,17 @@
 <script lang="ts" setup>
-const ingridients = ref<(DishIngridient & { id: string })[]>([]);
+let lastID = 1;
+const ingridients = ref<(DishIngridient & { id: string })[]>([
+  {
+    id: String(lastID),
+    title: "",
+    amount: 0,
+    units: "g",
+  },
+]);
 
 const addIngredient = () => {
   ingridients.value.push({
-    id: crypto.randomUUID(),
+    id: String(++lastID),
     title: "",
     amount: 0,
     units: "g",
@@ -34,7 +42,7 @@ const addIngredient = () => {
           />
         </FormField>
         <div class="flex flex-col gap-2">
-          <IngridientRow v-model="ingridients[0]" />
+          <IngridientRow v-model="ingridients[0]!" />
 
           <button
             type="button"
