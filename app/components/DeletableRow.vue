@@ -3,7 +3,8 @@ defineEmits<{
   delete: [];
 }>();
 
-const props = defineProps<{
+
+defineProps<{
   as: "li" | "div";
 }>();
 </script>
