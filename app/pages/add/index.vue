@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+const title = ref<string>("");
+const description = ref<string>("");
+
 const ingridients = ref<DishIngridient[]>([
   {
     title: "",
@@ -21,16 +24,28 @@ const macronutrients = ref<DishMacronutrients>({
     amount: 0,
   },
 });
+
+function handleSubmit() {
+  const dish = {
+    title: title.value,
+    description: description.value,
+    ingridients: ingridients.value,
+    macronutrients: macronutrients.value,
+  };
+
+  console.log(dish);
+}
 </script>
 
 <template>
-  <main class="flex flex-1 flex-col py-4">
+  <main class="flex flex-1 flex-col gap-4 p-4">
     <PageHeading text="Додаваня нової страви" />
 
-    <div class="p-4">
+    <div class="bg-card space-y-4 rounded-2xl p-4 shadow-xs">
       <Form>
         <FormField label="Назва страви">
           <FormInput
+            v-model="title"
             type="text"
             name="title"
             placeholder="Чахохбілі"
@@ -39,7 +54,7 @@ const macronutrients = ref<DishMacronutrients>({
         </FormField>
         <FormField label="Опис страви">
           <FormTextarea
-            type="text"
+            v-model="description"
             name="description"
             placeholder="Грузинское блюдо..."
             required
@@ -48,6 +63,14 @@ const macronutrients = ref<DishMacronutrients>({
         <FormIngridiens v-model="ingridients" />
         <FormMacronutrients v-model="macronutrients" />
       </Form>
+
+      <button
+        type="button"
+        class="bg-accent-background inline-flex rounded-2xl px-6 py-2"
+        @click="handleSubmit"
+      >
+        Відправити
+      </button>
     </div>
   </main>
 </template>
