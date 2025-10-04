@@ -50,6 +50,7 @@ watch(rule, (newRule) => {
       v-if="hasUnits(model)"
       v-model="model.units"
       :disabled="!!rule?.lock"
+      class="bg-accent-background rounded-lg py-1"
     >
       <option
         v-for="unit in ALL_UNITS"
