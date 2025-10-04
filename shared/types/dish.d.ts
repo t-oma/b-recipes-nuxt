@@ -3,7 +3,11 @@ export type Macronutrient = {
   amount: number;
 };
 
-export type IngridientUnits = "g" | "kg" | "ml" | "l" | "pcs";
+export type DishMacronutrients = {
+  [key in ["proteins", "fats", "carbs"][number]]: Macronutrient;
+};
+
+export type IngridientUnits = "g" | "kg" | "ml" | "l" | "pcs" | "зубчики";
 
 export type DishIngridient =
   | {
@@ -35,7 +39,7 @@ export type AppDish = {
   title: string;
   displayName: string;
   description: string;
-  macronutrients: Macronutrient[];
+  macronutrients: DishMacronutrients;
   ingridients: DishIngridient[];
   steps: DishStep[];
 };

@@ -1,4 +1,4 @@
-export const dishes = [
+export const dishes: AppDish[] = [
   {
     id: "123abc456def",
     image: {
@@ -6,43 +6,43 @@ export const dishes = [
       src: "/images/chakhokhbili.png",
     },
     title: "Chakhokhbili",
-    dislayName: "Чахохбілі",
+    displayName: "Чахохбілі",
     description:
       "Классическое грузинское блюдо: тушёная курица с томатами, луком и специями. Высокий белок для мышц, тёплое согревающее блюдо для осени.",
-    macronutrients: [
-      {
+    macronutrients: {
+      proteins: {
         displayName: "Білки",
         amount: 48,
       },
-      {
+      fats: {
         displayName: "Жири",
         amount: 20,
       },
-      {
+      carbs: {
         displayName: "Вуглеводи",
         amount: 22,
       },
-    ],
+    },
     ingridients: [
       {
         title: "Курячі стегна без шкіри",
         amount: 600,
-        units: "г.",
+        units: "g",
       },
       {
         title: "Цибуля ріпчаста",
         amount: 300,
-        units: "г.",
+        units: "g",
       },
       {
         title: "Помідори стиглі (або томати у власному соку)",
         amount: 500,
-        units: "г.",
+        units: "g",
       },
       {
         title: "Перець солодкий",
         amount: 200,
-        units: "г.",
+        units: "g",
       },
       {
         title: "Часник",
@@ -52,17 +52,17 @@ export const dishes = [
       {
         title: "Кінза свіжа",
         amount: 20,
-        units: "г.",
+        units: "g",
       },
       {
         title: "Петрушка свіжа",
         amount: 20,
-        units: "г.",
+        units: "g",
       },
       {
         title: "Олія оливкова",
         amount: 200,
-        units: "г.",
+        units: "g",
       },
       {
         title: "Сіль, перець, хмелі-сунелі",
