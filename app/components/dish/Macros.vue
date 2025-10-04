@@ -1,10 +1,12 @@
 <script setup lang="ts">
 const props = defineProps<{
   dishTitle: string;
-  macronutrients: Macronutrient[];
+  macronutrients: DishMacronutrients;
 }>();
 
-const total = props.macronutrients.reduce(
+const macronutrientsArray = Object.values(props.macronutrients);
+
+const total = macronutrientsArray.reduce(
   (acc, macronut) => (acc += macronut.amount),
   0,
 );
@@ -13,7 +15,7 @@ if (total < 1)
     `total amount of macronutrients in dish ${props.dishTitle} must be greater than 1`,
   );
 
-const macronutrients = props.macronutrients.map((macronut) => ({
+const processedMacronutrients = macronutrientsArray.map((macronut) => ({
   ...macronut,
   rate: Math.round((macronut.amount / total) * 100),
 }));
@@ -21,7 +23,7 @@ const macronutrients = props.macronutrients.map((macronut) => ({
 
 <template>
   <div
-    v-for="macronut in macronutrients"
+    v-for="macronut in processedMacronutrients"
     :key="macronut.displayName"
     class="bg-card flex flex-1 flex-col gap-2 rounded-lg p-2 shadow-xs"
   >
