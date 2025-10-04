@@ -23,6 +23,21 @@ const deleteIngredient = (index: number) => {
     ingridients.value.splice(index, 1);
   }
 };
+
+const macronutrients = ref<DishMacronutrients>({
+  proteins: {
+    displayName: "Білки",
+    amount: 48,
+  },
+  fats: {
+    displayName: "Жири",
+    amount: 20,
+  },
+  carbs: {
+    displayName: "Вуглеводи",
+    amount: 22,
+  },
+});
 </script>
 
 <template>
@@ -66,38 +81,7 @@ const deleteIngredient = (index: number) => {
             Add ingridient
           </button>
         </section>
-        <section class="flex flex-col gap-2">
-          <h2 class="font-bad-script text-lg">Макронутрієнти:</h2>
-          <ul class="space-y-2">
-            <li>
-              <FormField label="Білки">
-                <FormInput
-                  type="number"
-                  placeholder="0"
-                  name="proteins"
-                />
-              </FormField>
-            </li>
-            <li>
-              <FormField label="Жири">
-                <FormInput
-                  type="number"
-                  placeholder="0"
-                  name="fats"
-                />
-              </FormField>
-            </li>
-            <li>
-              <FormField label="Вуглеводи">
-                <FormInput
-                  type="number"
-                  placeholder="0"
-                  name="carbs"
-                />
-              </FormField>
-            </li>
-          </ul>
-        </section>
+        <FormMacronutrients v-model="macronutrients" />
       </Form>
     </div>
   </main>
