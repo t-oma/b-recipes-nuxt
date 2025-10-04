@@ -26,3 +26,7 @@
 - **Multilingual**: Supports Ukrainian/Russian content, English code
 - **Error handling**: Basic try/catch where needed, no complex patterns
 - **State**: Pinia stores with reactive/computed patterns
+
+## Preferences
+
+- Do not commit until you asked to
