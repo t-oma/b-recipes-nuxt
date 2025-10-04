@@ -1,41 +1,24 @@
 <script lang="ts" setup>
-let lastID = 1;
-const ingridients = ref<(DishIngridient & { id: string })[]>([
+const ingridients = ref<DishIngridient[]>([
   {
-    id: String(lastID),
     title: "",
     amount: 0,
     units: "g",
   },
 ]);
 
-const addIngredient = () => {
-  ingridients.value.push({
-    id: String(++lastID),
-    title: "",
-    amount: 0,
-    units: "g",
-  });
-};
-
-const deleteIngredient = (index: number) => {
-  if (ingridients.value.length > 1) {
-    ingridients.value.splice(index, 1);
-  }
-};
-
 const macronutrients = ref<DishMacronutrients>({
   proteins: {
     displayName: "Білки",
-    amount: 48,
+    amount: 0,
   },
   fats: {
     displayName: "Жири",
-    amount: 20,
+    amount: 0,
   },
   carbs: {
     displayName: "Вуглеводи",
-    amount: 22,
+    amount: 0,
   },
 });
 </script>
@@ -62,25 +45,7 @@ const macronutrients = ref<DishMacronutrients>({
             required
           />
         </FormField>
-        <section class="flex flex-col gap-2">
-          <h2 class="font-bad-script text-lg">Інгрідієнти:</h2>
-          <ul class="space-y-2">
-            <IngridientRow
-              v-for="(ingridient, idx) in ingridients"
-              :key="ingridient.id"
-              v-model="ingridients[idx]!"
-              @delete="deleteIngredient(idx)"
-            />
-          </ul>
-
-          <button
-            type="button"
-            class="bg-accent-background inline-flex items-center justify-center rounded-2xl p-2"
-            @click="addIngredient"
-          >
-            Add ingridient
-          </button>
-        </section>
+        <FormIngridiens v-model="ingridients" />
         <FormMacronutrients v-model="macronutrients" />
       </Form>
     </div>
