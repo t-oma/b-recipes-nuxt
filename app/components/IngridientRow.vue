@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { hasUnits } from "#imports";
+
 const model = defineModel<DishIngridient>({ required: true });
 
 type UnitRule = { units: IngridientUnits; lock: boolean };
