@@ -47,7 +47,8 @@ const deleteIngredient = (index: number) => {
             required
           />
         </FormField>
-        <div class="flex flex-col gap-2">
+        <section class="flex flex-col gap-2">
+          <h2 class="font-bad-script text-lg">Інгрідієнти:</h2>
           <ul class="space-y-2">
             <IngridientRow
               v-for="(ingridient, idx) in ingridients"
@@ -64,7 +65,10 @@ const deleteIngredient = (index: number) => {
           >
             Add ingridient
           </button>
-        </div>
+        </section>
+        <section>
+          <h2 class="font-bad-script text-lg">Макронутрієнти:</h2>
+        </section>
       </Form>
     </div>
   </main>
