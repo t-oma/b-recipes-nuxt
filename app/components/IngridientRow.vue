@@ -3,6 +3,11 @@ import { hasUnits } from "#imports";
 
 const model = defineModel<DishIngridient>({ required: true });
 
+// Define emits for TypeScript hints - events bubble from DeletableRow
+defineEmits<{
+  delete: [];
+}>();
+
 type UnitRule = { units: IngridientUnits; lock: boolean };
 
 const UNIT_RULES: Readonly<Record<string, UnitRule>> = {
