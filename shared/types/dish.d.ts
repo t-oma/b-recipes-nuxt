@@ -9,7 +9,7 @@ export type DishIngridient =
   | {
       title: string;
       amount: number;
-      units: Units;
+      units: IngridientUnits;
     }
   | {
       title: string;
