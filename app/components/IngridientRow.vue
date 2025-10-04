@@ -30,7 +30,10 @@ watch(rule, (newRule) => {
 </script>
 
 <template>
-  <DeletableRow as="li">
+  <DeletableRow
+    as="li"
+    @delete="$emit('delete')"
+  >
     <FormInput
       v-model="model.title"
       placeholder="Назва інгредієнта"
