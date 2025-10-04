@@ -27,10 +27,10 @@ const macronutrients = ref<DishMacronutrients>({
 
 function handleSubmit() {
   const dish = {
-    title: title.value,
-    description: description.value,
-    ingridients: ingridients.value,
-    macronutrients: macronutrients.value,
+    title: title.value.slice(),
+    description: description.value.slice(),
+    ingridients: Object.freeze(ingridients.value),
+    macronutrients: Object.freeze(macronutrients.value),
   };
 
   console.log(dish);
