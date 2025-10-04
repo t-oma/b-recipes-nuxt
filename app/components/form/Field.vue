@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-const { label } = defineProps<{
+const { label, as = "div" } = defineProps<{
   label: string;
+  as?: "div" | "li";
 }>();
 
 const id = useId();
@@ -8,7 +9,10 @@ provide("input-id", id);
 </script>
 
 <template>
-  <div class="flex items-center justify-between gap-4">
+  <component
+    :is="as"
+    class="flex items-center justify-between gap-4"
+  >
     <label
       :for="id"
       class="font-bad-script text-lg whitespace-nowrap"
@@ -17,5 +21,5 @@ provide("input-id", id);
     </label>
 
     <slot />
-  </div>
+  </component>
 </template>
