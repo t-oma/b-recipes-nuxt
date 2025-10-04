@@ -67,19 +67,19 @@ const {
 const { steps } = useDishSteps(dish); // композабл собирает безопасно в watchEffect. :contentReference[oaicite:5]{index=5}
 
 // (по желанию) базовый SEO
-// оставляем твои имена полей (dislayName и т.п.)
+// оставляем твои имена полей (displayName и т.п.)
 
 useSeoMeta({
-  title: () => dish.value?.dislayName ?? "Рецепт",
+  title: () => dish.value?.displayName ?? "Рецепт",
   description: () => dish.value?.description ?? "Опис рецепту",
 
-  ogTitle: () => dish.value?.dislayName ?? "Рецепт",
+  ogTitle: () => dish.value?.displayName ?? "Рецепт",
   ogDescription: () => dish.value?.description ?? "Опис рецепту",
   ogType: "article",
   ogUrl: () => canonicalHref.value, // <— используем каноникал
 
   twitterCard: "summary_large_image",
-  twitterTitle: () => dish.value?.dislayName ?? "Рецепт",
+  twitterTitle: () => dish.value?.displayName ?? "Рецепт",
   twitterDescription: () => dish.value?.description ?? "Опис рецепту",
 
   // только абсолютные ссылки на изображения
@@ -105,7 +105,7 @@ useSeoMeta({
     </div>
 
     <template v-else-if="dish">
-      <PageHeading :text="dish.dislayName" />
+      <PageHeading :text="dish.displayName" />
 
       <div class="px-4">
         <DishCard :dish>

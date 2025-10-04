@@ -7,12 +7,12 @@ const titleId = computed(() => `dish-title-${props.dish.id}`);
 
 function printPdf(d: AppDish) {
   // TODO: сформировать/скачать PDF для блюда d
-  console.log("print PDF for", d.dislayName);
+  console.log("print PDF for", d.displayName);
 }
 
 function openInstruction(d: AppDish) {
   // TODO: открыть инструкцию/видео для блюда d
-  console.log("open instruction for", d.dislayName);
+  console.log("open instruction for", d.displayName);
 }
 </script>
 
@@ -34,7 +34,7 @@ function openInstruction(d: AppDish) {
 
     <div class="flex gap-1">
       <DishMacros
-        :dish-title="dish.dislayName"
+        :dish-title="dish.displayName"
         :macronutrients="dish.macronutrients"
       />
     </div>
