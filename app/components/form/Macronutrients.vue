@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { macroDisplayName } from "~/utils/macros";
+
 const model = defineModel<DishMacronutrients>({ required: true });
 </script>
 
@@ -8,9 +10,9 @@ const model = defineModel<DishMacronutrients>({ required: true });
 
     <ul class="space-y-2">
       <FormField
-        v-for="(macro, name) in model"
+        v-for="(_macro, name) in model"
         :key="name"
-        :label="macro.displayName"
+        :label="macroDisplayName(name)"
         as="li"
       >
         <FormInput

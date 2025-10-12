@@ -11,15 +11,12 @@ export const dishes: AppDish[] = [
       "Классическое грузинское блюдо: тушёная курица с томатами, луком и специями. Высокий белок для мышц, тёплое согревающее блюдо для осени.",
     macronutrients: {
       proteins: {
-        displayName: "Білки",
         amount: 48,
       },
       fats: {
-        displayName: "Жири",
         amount: 20,
       },
       carbs: {
-        displayName: "Вуглеводи",
         amount: 22,
       },
     },

@@ -4,10 +4,10 @@ const props = defineProps<{
   macronutrients: DishMacronutrients;
 }>();
 
-const macronutrientsArray = Object.values(props.macronutrients);
+const macronutrientsArray = Object.entries(props.macronutrients);
 
 const total = macronutrientsArray.reduce(
-  (acc, macronut) => (acc += macronut.amount),
+  (acc, [, macronut]) => (acc += macronut.amount),
   0,
 );
 if (total < 1)
@@ -15,7 +15,9 @@ if (total < 1)
     `total amount of macronutrients in dish ${props.dishTitle} must be greater than 1`,
   );
 
-const processedMacronutrients = macronutrientsArray.map((macronut) => ({
+const processedMacronutrients = macronutrientsArray.map(([key, macronut]) => ({
+  key,
+  displayName: macroDisplayName(key),
   ...macronut,
   rate: Math.round((macronut.amount / total) * 100),
 }));
@@ -24,7 +26,7 @@ const processedMacronutrients = macronutrientsArray.map((macronut) => ({
 <template>
   <div
     v-for="macronut in processedMacronutrients"
-    :key="macronut.displayName"
+    :key="macronut.key"
     class="bg-card flex flex-1 flex-col gap-2 rounded-lg p-2 shadow-xs"
   >
     <p class="text-xs">

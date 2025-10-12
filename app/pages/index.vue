@@ -40,7 +40,7 @@ const dishes = computed(() => data.value ?? []);
         >
           <template #header>
             <h2 class="font-caveat pb-2 text-center text-4xl">
-              {{ dish.dislayName }}
+              {{ dish.displayName }}
             </h2>
           </template>
 

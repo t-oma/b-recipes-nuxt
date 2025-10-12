@@ -1,10 +1,11 @@
 export type Macronutrient = {
-  displayName: string;
   amount: number;
 };
 
+export type Macronutrients = "proteins" | "fats" | "carbs";
+
 export type DishMacronutrients = {
-  [key in ["proteins", "fats", "carbs"][number]]: Macronutrient;
+  [key in Macronutrients]: Macronutrient;
 };
 
 export type IngridientUnits = "g" | "kg" | "ml" | "l" | "pcs" | "зубчики";
