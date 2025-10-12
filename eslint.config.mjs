@@ -23,7 +23,7 @@ export default withNuxt({
         caughtErrorsIgnorePattern: "^_",
       },
     ],
-    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-explicit-any": "error",
 
     // Type-aware rules (require parserOptions.project)
     "@typescript-eslint/no-unnecessary-type-assertion": "error",
