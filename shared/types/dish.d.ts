@@ -44,3 +44,9 @@ export type AppDish = {
   ingridients: DishIngridient[];
   steps: DishStep[];
 };
+
+export type FormDish = Omit<AppDish, "id" | "title" | "image"> & {
+  image: {
+    src: string;
+  };
+};
