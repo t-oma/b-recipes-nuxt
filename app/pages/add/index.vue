@@ -47,7 +47,7 @@ async function handleSubmit() {
 
   try {
     const dish = {
-      title: displayName.value.trim(),
+      title: slugify(displayName.value.trim()),
       description: description.value.trim(),
       ingridients: ingridients.value.filter(
         (ing) =>
@@ -55,13 +55,12 @@ async function handleSubmit() {
           (typeof ing.amount === "number" ? ing.amount > 0 : ing.amount.trim()),
       ),
       macronutrients: macronutrients.value,
-      // Add required fields for AppDish type
       image: {
-        alt: displayName.value.trim(),
+        alt: slugify(displayName.value.trim()),
         src: "/images/chakhokhbili.png", // Default image
       },
       displayName: displayName.value.trim(),
-      steps: [], // Empty steps for now
+      steps: [],
     };
 
     const response = await $fetch("/api/dishes", {
@@ -69,7 +68,6 @@ async function handleSubmit() {
       body: dish,
     });
 
-    // Redirect to the new dish page
     await navigateTo(`/${createLink(response)}`);
   } catch (_error) {
     errors.value.push("Помилка при створенні страви. Спробуйте ще раз.");
