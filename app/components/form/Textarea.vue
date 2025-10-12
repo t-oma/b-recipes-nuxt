@@ -18,7 +18,7 @@ const props = withDefaults(
 
 const providedId = inject<string | null>("input-id", null);
 const generatedId = useId();
-const id = computed(() => providedId || generatedId);
+const id = computed(() => providedId ?? generatedId);
 </script>
 
 <template>

@@ -39,7 +39,7 @@ const normalized = computed(() => {
   const isIndeterminate =
     current === null ||
     current === undefined ||
-    !Number.isFinite(current as number);
+    !Number.isFinite(current);
 
   const currentValue = isIndeterminate
     ? NaN

@@ -19,7 +19,7 @@ const UNIT_RULES: Readonly<Record<string, UnitRule>> = {
 
 const ALL_UNITS = ["g", "kg", "ml", "l", "pcs"] as const;
 
-const rule = computed(() => UNIT_RULES[norm(model.value?.title || "")] || null);
+const rule = computed(() => UNIT_RULES[norm(model.value?.title ?? "")] ?? null);
 
 watch(rule, (newRule) => {
   if (!newRule) return;

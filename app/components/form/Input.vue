@@ -19,7 +19,7 @@ const props = withDefaults(
 // берём то, что дали сверху, или генерим своё
 const providedId = inject<string | null>("input-id", null);
 const generatedId = useId();
-const id = computed(() => providedId || generatedId); // ✅ всегда будет id
+const id = computed(() => providedId ?? generatedId); // ✅ всегда будет id
 </script>
 
 <template>
